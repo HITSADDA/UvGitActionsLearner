@@ -1,23 +1,44 @@
+# Name for the Pipeline
 name: Node.js CI
 
+# When to Trigger the workflow on push or pull request events to the main branch
 on:
   push:
     branches: [ "main" ]
   pull_request:
     branches: [ "main" ]
 
+# Define the jobs to run in the workflow
 jobs:
+
+  # Define a job named "build", Name can be anything you want "build-uv" or "build-nodejs" etc.
     build:
+      # The type of virtual host machine to run the job on, in this case, we are using the latest version of Ubuntu
         runs-on: ubuntu-latest
-        
+
+        # Define the steps to run in the job
         steps:
+          # Step 1: Checkout the repository to the runner
         - name: Checkout repository
           uses: actions/checkout@v4
-        
+
+          # Step 2: Setup Node.js environment using the setup-node action
         - name: Setup Node.js
           uses: actions/setup-node@v4
+          # Define the Node.js version to use, in this case, we are using version 18
           with:
             node-version: '18'
+            # Define the cache for npm dependencies to speed up the build process
+            cache: 'npm'
+            host: ${{secrets.TEST_HOST}}
+            username: root
+            key: ${{secrets.SSH_KEY}}
+            # Define the script to run on the remote host after setting up Node.js
+            script:
+                cd /home/ubuntu/UvGitActionsLearner
+                git pull
+                docker compose down
+                docker compose up -d --build
         
         - name: Install dependencies
           run: npm install
