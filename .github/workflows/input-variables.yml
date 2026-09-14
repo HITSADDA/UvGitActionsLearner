@@ -1,0 +1,20 @@
+name: Input Varibles
+
+on:
+  workflow_dispatch:
+    inputs:
+      number1:
+        description: "Number One"
+        type: number
+
+      number2:
+        description: "Number Two"
+        type: number
+
+jobs:
+  sum:
+    name: Sum
+    runs-on: ubuntu-latest
+    steps:
+      - name: Count
+        run: echo "${{inputs.number1}} ${{inputs.number2}} = $((${{inputs.number1}} + ${{inputs.number2}}))"
