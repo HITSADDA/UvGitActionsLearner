@@ -1,0 +1,25 @@
+name: Dummy Automation Workflow
+
+on:
+  push:
+    branches: [ "main" ]
+  workflow_dispatch: # Allows you to click a button in GitHub to run it manually
+
+jobs:
+  dummy-job-1:
+    name: First Stage Log
+    runs-on: ubuntu-latest
+    steps:
+      - name: Say Hello
+        run: echo "Hello World! This is step 1."
+
+      - name: Show Current Time
+        run: date
+
+  dummy-job-2:
+    name: Second Stage Log
+    runs-on: ubuntu-latest
+    needs: dummy-job-1 # Forces this job to wait until dummy-job-1 finishes
+    steps:
+      - name: Say Goodbye
+        run: echo "Goodbye! Workflow executed successfully."
