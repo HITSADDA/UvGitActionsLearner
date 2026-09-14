@@ -16,15 +16,13 @@ jobs:
       - name: Deploy Via SSH
         uses: appleboy/ssh-action@v1.0.3
         with:
-          host: ${{secrets.SSH_HOST}}
-          username: ${{secrets.USERNAME}}
-          port: ${{secrets.PORT}}
-          key: ${{secrets.SSH_KEY}}
-          envs: PORT
-
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.USERNAME }}
+          key: ${{ secrets.SSH_KEY }}
+          port: 22
           script: |
-             cd /root/UvGitActionsLearner
-             git pull
-             # 2. Export or pass it directly so docker-compose can read it
-             export PORT=${{secrets.PORT}}
-             docker compose up -d --build
+            cd /root/UvGitActionsLearner
+            git pull origin main
+            export PORT=${{ secrets.PORT }}
+            docker compose down
+            docker compose up -d --build
