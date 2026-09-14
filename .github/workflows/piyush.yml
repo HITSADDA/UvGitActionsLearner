@@ -2,10 +2,29 @@ name: Piyus Garg Tutorial
 
 on:
     push:
-        branches: ["main"]
-
+      branches: ["main"]
 
 jobs:
-    job-1:
-        name: job-1
-        runs-on: ubuntu-latest
+  deploy:
+    name: deploy
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+      
+      - name: Deploy Via SSH
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{secrets.SSH_HOST}}
+          username: ${{secrets.USERNAME}}
+          port: ${{secrets.PORT}}
+          key: ${{secrets.SSK_KEY}}
+          envs: PORT
+
+          script: |
+             cd /root/porject-dir-on-server
+             git pull
+             # 2. Export or pass it directly so docker-compose can read it
+             export PORT=${{secrets.PORT}}
+             docker compose up -d --build
