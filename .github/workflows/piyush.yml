@@ -19,11 +19,11 @@ jobs:
           host: ${{secrets.SSH_HOST}}
           username: ${{secrets.USERNAME}}
           port: ${{secrets.PORT}}
-          key: ${{secrets.SSK_KEY}}
+          key: ${{secrets.SSH_KEY}}
           envs: PORT
 
           script: |
-             cd /root/porject-dir-on-server
+             cd /root/UvGitActionsLearner
              git pull
              # 2. Export or pass it directly so docker-compose can read it
              export PORT=${{secrets.PORT}}
