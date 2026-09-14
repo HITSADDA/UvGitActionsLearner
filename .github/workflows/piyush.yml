@@ -23,6 +23,6 @@ jobs:
           script: |
             cd /home/ubuntu/UvGitActionsLearner
             git pull origin main
-            export PORT=3000
+            export PORT=${{secrets.PORT}}
             docker compose down --remove-orphans
             docker compose up -d --build

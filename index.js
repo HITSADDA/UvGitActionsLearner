@@ -9,7 +9,7 @@ app.use(express.json())
 
 
 app.get('/', (req, res) => {
-    res.send('Hello World! V1 Brother')
+    res.send('Hello World! V1 Sister')
 })
 
 app.listen(PORT, () => {
