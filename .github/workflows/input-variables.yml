@@ -18,7 +18,9 @@ jobs:
     steps:
       - name: Count
         id: sum
-        run: echo "::set.output name=sum::$((${{inputs.number1}} + ${{inputs.number2}}))"
+        run: |
+          sum=$(( ${{ inputs.number1 }} + ${{ inputs.number2 }} ))
+          echo "sum=$sum" >> "$GITHUB_OUTPUT"
 
       - name: Result
         run: echo "${{inputs.number1}} ${{inputs.number2}} = ${{steps.sum.outputs.sum}}"
