@@ -20,8 +20,12 @@ jobs:
     job-2:
       name: Collect Name
       runs-on: ubuntu-latest
+      needs:
+        job-1
       env:
         username: Binod
       steps:
           - name: Say Name
-            run: echo "Your Name is $username on App $app_name"
+            run: echo "Your Name is $username on App $app_name and $stepname"
+            env:
+                stepname: Binod-step
