@@ -17,4 +17,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Count
-        run: echo "${{inputs.number1}} ${{inputs.number2}} = $((${{inputs.number1}} + ${{inputs.number2}}))"
+        id: sum
+        run: echo "::set.output name=sum::$((${{inputs.number1}} + ${{inputs.number2}}))"
+
+      - name: Result
+        run: echo "${{inputs.number1}} ${{inputs.number2}} = ${{steps.sum.outputs.sum}}"
