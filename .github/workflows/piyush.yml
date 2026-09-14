@@ -1,0 +1,11 @@
+name: Piyus Garg Tutorial
+
+on:
+    push:
+        branches: ["main"]
+
+
+jobs:
+    job-1:
+        name: job-1
+        runs-on: ubuntu-latest
