@@ -1,0 +1,14 @@
+name: Configuration Variable of Multiple Workflows
+
+on:
+  workflow_dispatch:
+
+jobs:
+  job-1:
+    name: Test Config
+    runs-on: ubuntu-latest
+    env:
+      username: Vishal
+    steps:
+      - name: Print Vars
+        run: echo "$appname in username $username for appId ${{vars.PROJECT_ID}}"

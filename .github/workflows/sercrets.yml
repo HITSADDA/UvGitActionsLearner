@@ -1,0 +1,14 @@
+name: Environemnt Secret
+
+on:
+  workflow_dispatch:
+
+
+jobs:
+  Print:
+    name: Get Host
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Hii
+        run: echo "app is running on port ${{secrets.PORT}}"
