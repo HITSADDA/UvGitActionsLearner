@@ -1,0 +1,27 @@
+name: Workflow Single Variable
+
+on:
+    push:
+        branches: ["main"]
+    workflow_dispatch:
+
+env:
+    app_name: Gamingwood
+
+jobs:
+    job-1:
+        name: Collect Name
+        runs-on: ubuntu-latest
+        env:
+            username: Vishal
+        steps:
+            - name: Say Name
+              run: echo "Your Name is $username on App $app_name"
+    job-2:
+      name: Collect Name
+      runs-on: ubuntu-latest
+      env:
+        username: Binod
+      steps:
+          - name: Say Name
+            run: echo "Your Name is $username on App $app_name"
