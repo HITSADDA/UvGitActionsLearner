@@ -4,10 +4,25 @@ node_modules/
 # Environment variables (NEVER commit these!)
 .env
 .env.local
+.env.*
 
 # Log files
 *.log
 npm-debug.log*
+
+# Build output
+dist/
+build/
+out/
+
+# Coverage reports
+coverage/
+
+# Editor/IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
 
 # OS generated files
 .DS_Store
