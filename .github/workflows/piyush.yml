@@ -21,7 +21,7 @@ jobs:
           key: ${{ secrets.SSH_KEY }}
           port: 22
           script: |
-            cd /root/UvGitActionsLearner
+            cd /home/ubuntu/UvGitActionsLearner
             git pull origin main
             export PORT=${{ secrets.PORT }}
             docker compose down
