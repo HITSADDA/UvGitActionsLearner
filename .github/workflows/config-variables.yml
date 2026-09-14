@@ -11,4 +11,4 @@ jobs:
       username: Vishal
     steps:
       - name: Print Vars
-        run: echo "$appname in username $username for appId: ${{vars.PROJECT_ID}}"
+        run: echo "$appname in username $username for appId ${{vars.PROJECT_ID}}"
